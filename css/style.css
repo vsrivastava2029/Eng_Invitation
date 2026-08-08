@@ -1,0 +1,550 @@
+/* ==========================================
+   COLOR PALETTE & DESIGN TOKENS
+   ========================================== */
+:root {
+    --maroon: #58111A;
+    --maroon-dark: #2C040A;
+    --gold: #D4AF37;
+    --gold-light: #F3E5AB;
+    --white: #FAFAFA;
+    --dark: #222222;
+    --font-royal: 'Cinzel Decorative', serif;
+    --font-cursive: 'Great Vibes', cursive;
+    --font-sans: 'Montserrat', sans-serif;
+}
+
+/* ==========================================
+   RESET & GLOBAL RESPONSIVE SETUP
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    background-color: var(--maroon);
+    color: var(--white);
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Background Particle Canvas */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Ambient Music Control Button */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    background: rgba(212, 175, 55, 0.25);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.music-btn:hover {
+    background: var(--gold);
+    color: var(--maroon);
+    transform: scale(1.1);
+}
+
+.music-btn.playing i {
+    animation: pulse 1.5s infinite linear;
+}
+
+/* ==========================================
+   1. WELCOME HERO SCREEN (FLUID & MODERN)
+   ========================================== */
+.hero-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(44, 4, 10, 0.85), rgba(88, 17, 26, 0.92)), 
+                url('../images/hero-bg.jpg') center/cover no-repeat;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(15px, 4vw, 30px);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.hero-layer.slide-up {
+    transform: translateY(-100%);
+}
+
+.royal-frame {
+    border: 2px solid var(--gold);
+    padding: clamp(25px, 5vw, 45px) clamp(15px, 4vw, 30px);
+    max-width: 650px;
+    width: 92%;
+    border-radius: 8px;
+    position: relative;
+    background: rgba(88, 17, 26, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.royal-frame::before, .royal-frame::after {
+    content: '✨';
+    position: absolute;
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+.royal-frame::before { top: -15px; left: 50%; transform: translateX(-50%); }
+.royal-frame::after { bottom: -15px; left: 50%; transform: translateX(-50%); }
+
+.hero-layer h1 {
+    font-family: var(--font-royal);
+    color: var(--gold);
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.couple-names {
+    font-family: var(--font-cursive);
+    font-size: clamp(2.6rem, 8vw, 4.2rem);
+    color: var(--gold-light);
+    margin: 15px 0;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+}
+
+.invitation-text {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.btn-gold {
+    background: linear-gradient(45deg, #B38728, #FBF5B7, #DAA520, #AA771C);
+    background-size: 300% 300%;
+    color: var(--maroon);
+    border: none;
+    padding: clamp(12px, 3vw, 16px) clamp(24px, 6vw, 40px);
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(214, 175, 55, 0.4);
+    animation: goldenShine 4s infinite, pulse 2s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-gold:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================
+   2. ENVELOPE ANIMATION LAYER
+   ========================================== */
+.envelope-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--maroon-dark);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    padding: 15px;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: min(320px, 90vw);
+    height: min(220px, 60vw);
+    background-color: #6e1620;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    cursor: pointer;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: calc(min(320px, 90vw) / 2) solid transparent;
+    border-right: calc(min(320px, 90vw) / 2) solid transparent;
+    border-top: calc(min(220px, 60vw) * 0.6) solid #831b26;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-pocket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-left: calc(min(320px, 90vw) / 2) solid transparent;
+    border-right: calc(min(320px, 90vw) / 2) solid transparent;
+    border-bottom: calc(min(220px, 60vw) * 0.5) solid #530d15;
+    z-index: 3;
+    border-radius: 0 0 8px 8px;
+    pointer-events: none;
+}
+
+.envelope-card {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: calc(100% - 30px);
+    height: calc(100% - 20px);
+    background: linear-gradient(135deg, #fff, var(--gold-light));
+    border-radius: 4px;
+    z-index: 2;
+    transition: transform 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--maroon);
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.envelope-card h3 {
+    font-family: var(--font-royal);
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.envelope-card p {
+    font-family: var(--font-cursive);
+    font-size: 1.8rem;
+}
+
+.envelope-wrapper.open .envelope-card {
+    transform: translateY(-120px) scale(1.04);
+    z-index: 4;
+}
+
+/* ==========================================
+   MAIN CONTENT AREA & SECTION ANIMATIONS
+   ========================================== */
+.main-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: clamp(30px, 6vw, 60px) 15px;
+}
+
+/* Shared Section Card Styles */
+.section-card {
+    background: rgba(250, 250, 250, 0.04);
+    border: 1px solid rgba(214, 175, 55, 0.35);
+    border-radius: 14px;
+    padding: clamp(25px, 5vw, 45px) clamp(15px, 4vw, 30px);
+    margin-bottom: clamp(30px, 6vw, 50px);
+    text-align: center;
+    backdrop-filter: blur(12px);
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid rgba(214, 175, 55, 0.18);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.floral-divider {
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin: 18px 0;
+}
+
+/* ==========================================
+   3. SCRATCH CARD REVEAL
+   ========================================== */
+.scratch-container {
+    position: relative;
+    width: min(300px, 85vw);
+    height: min(300px, 85vw);
+    margin: 20px auto;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+}
+
+#scratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: crosshair;
+}
+
+.scratch-reveal-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    color: var(--maroon);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.scratch-reveal-card h3 {
+    font-family: var(--font-royal);
+    font-size: 1.2rem;
+    color: #b08218;
+    margin-bottom: 10px;
+}
+
+.scratch-reveal-card .date {
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+/* ==========================================
+   4. INVITATION CORE SECTION
+   ========================================== */
+.invitation-main-card h2 {
+    font-family: var(--font-royal);
+    color: var(--gold);
+    font-size: clamp(1.4rem, 4vw, 2.1rem);
+    letter-spacing: 2px;
+}
+
+.invitation-main-card .names {
+    font-family: var(--font-cursive);
+    font-size: clamp(2.8rem, 9vw, 4.4rem);
+    color: var(--gold-light);
+    margin: 20px 0;
+}
+
+.details-text {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    line-height: 1.8;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.details-text em {
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* ==========================================
+   5. COUNTDOWN TIMER (RESPONSIVE GRID)
+   ========================================== */
+.countdown-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(6px, 2vw, 12px);
+    max-width: 520px;
+    margin: 25px auto 0;
+}
+
+.countdown-box {
+    background: rgba(88, 17, 26, 0.75);
+    border: 1px solid rgba(214, 175, 55, 0.45);
+    padding: clamp(10px, 3vw, 18px) 5px;
+    border-radius: 10px;
+}
+
+.countdown-box span {
+    display: block;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 600;
+    color: var(--gold);
+    font-family: var(--font-royal);
+}
+
+.countdown-box label {
+    font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white);
+    opacity: 0.85;
+}
+
+/* ==========================================
+   6. PHOTO GALLERY (SLIDER & TOUCH)
+   ========================================== */
+.slider-window {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    height: clamp(250px, 50vw, 420px);
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 3px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.slide:hover img {
+    transform: scale(1.06);
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(44, 4, 10, 0.75);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    width: clamp(34px, 8vw, 44px);
+    height: clamp(34px, 8vw, 44px);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+    background: var(--gold);
+    color: var(--maroon);
+}
+
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
+
+/* ==========================================
+   7. BUTTONS & UTILITIES
+   ========================================== */
+.share-btn-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    padding: clamp(10px, 2.5vw, 14px) clamp(18px, 4vw, 28px);
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: var(--maroon);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(214, 175, 55, 0.3);
+}
+
+/* ==========================================
+   ANIMATIONS & KEYFRAMES
+   ========================================== */
+@keyframes goldenShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 5px 15px rgba(214, 175, 55, 0.4); }
+    50% { transform: scale(1.04); box-shadow: 0 5px 25px rgba(214, 175, 55, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 5px 15px rgba(214, 175, 55, 0.4); }
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+@media (max-width: 480px) {
+    .countdown-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

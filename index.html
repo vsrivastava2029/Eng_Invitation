@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Engagement Invitation | Vikash & Swati</title>
+    <meta name="description" content="You are cordially invited to the grand engagement celebration of Vikash & Swati!">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Background Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Ambient Audio System -->
+    <audio id="ambientMusic" loop src="audio/music1.mp3"></audio>
+    <button class="music-btn" id="musicToggle" aria-label="Toggle Music">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- 1. Welcome Hero Screen -->
+    <section class="hero-layer" id="heroLayer">
+        <div class="royal-frame">
+            <h1>The Engagement Invitation</h1>
+            <div class="floral-divider">❖  ⚜  ❖</div>
+            <div class="couple-names">Vikash <span style="font-size: 0.6em; color: var(--gold);">❤️</span> Swati</div>
+            <p class="invitation-text">
+                Together with our families, we warmly invite you to celebrate our beautiful journey of love and togetherness.
+            </p>
+            <button class="btn-gold" id="openInviteBtn">Tap to Open Invitation</button>
+        </div>
+    </section>
+
+    <!-- 2. Envelope Animation Layer -->
+    <section class="envelope-layer" id="envelopeLayer">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope-flap"></div>
+            <div class="envelope-card">
+                <h3>Royal Invitation</h3>
+                <div class="floral-divider" style="margin: 5px 0;">❖</div>
+                <p>Vikash & Swati</p>
+                <small style="font-size: 0.75rem; margin-top:5px; color: #888;">Tap card to open</small>
+            </div>
+            <div class="envelope-pocket"></div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent" style="display: none;">
+
+        <!-- 3. Scratch Card Section -->
+        <section class="section-card">
+            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.3rem;">A Special Secret</h2>
+            <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.9;">Scratch with finger or mouse to reveal our date ✨</p>
+            
+            <div class="scratch-container">
+                <div class="scratch-reveal-card">
+                    <h3>Save The Date</h3>
+                    <div style="color:var(--maroon); font-size: 1.2rem;">❖</div>
+                    <p class="date">OCTOBER 15</p>
+                    <p style="font-weight: 600; font-size: 1rem; letter-spacing: 1px;">Thursday | 4:00 PM onwards</p>
+                    <p style="font-size: 0.85rem; margin-top: 10px; color: #555;">The Grand Imperial Palace</p>
+                </div>
+                <canvas id="scratchCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- 4. Invitation Core Details -->
+        <section class="section-card invitation-main-card">
+            <div class="floral-divider">⚜  ❖  ⚜</div>
+            <h2>Inviting You To Celebrate</h2>
+            
+            <div class="names">Vikash & Swati</div>
+            
+            <p class="details-text">
+                With the divine blessings of our elders and almighty, we request the honor of your presence and blessings at the auspicious grand celebration of our engagement ceremony.
+            </p>
+            
+            <div class="floral-divider">❖</div>
+            
+            <p class="details-text" style="font-size: 1.2rem;">
+                On <em>Thursday, 15th October</em><br>
+                Time: <em>4:00 PM Onwards</em>
+            </p>
+            
+            <div class="floral-divider">❖</div>
+            
+            <p class="details-text" style="font-size: 1rem;">
+                <strong>Hosted By:</strong><br>
+                Srivastava & Family Members
+            </p>
+
+            <div style="margin-top: 25px;">
+                <button class="btn-outline" id="addToCalendar">
+                    <i class="far fa-calendar-plus"></i> Add to Google Calendar
+                </button>
+            </div>
+        </section>
+
+        <!-- 5. Countdown Clock Section -->
+        <section class="section-card">
+            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; letter-spacing: 1px;">Counting Down To Forever</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span id="days">00</span>
+                    <label>Days</label>
+                </div>
+                <div class="countdown-box">
+                    <span id="hours">00</span>
+                    <label>Hours</label>
+                </div>
+                <div class="countdown-box">
+                    <span id="minutes">00</span>
+                    <label>Mins</label>
+                </div>
+                <div class="countdown-box">
+                    <span id="seconds">00</span>
+                    <label>Secs</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Photo Gallery Carousel Section -->
+        <section class="section-card">
+            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; margin-bottom: 20px;">Moments of Love</h2>
+            <div class="slider-window" id="gallerySlider">
+                <button class="slider-arrow arrow-left" id="prevSlide" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-arrow arrow-right" id="nextSlide" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                
+                <button id="sliderPausePlayBtn" aria-label="Pause Slideshow" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(44, 4, 10, 0.75); border: 1px solid var(--gold); color: var(--gold); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.3s ease;">
+                    <i class="fas fa-pause" id="pausePlayIcon"></i>
+                </button>
+
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide"><img src="images/image1.jpg" alt="Engagement Moment 1"></div>
+                    <div class="slide"><img src="images/image2.jpg" alt="Engagement Moment 2"></div>
+                    <div class="slide"><img src="images/image3.jpg" alt="Engagement Moment 3"></div>
+                    <div class="slide"><img src="images/image4.jpg" alt="Engagement Moment 4"></div>
+                    <div class="slide"><img src="images/image5.jpg" alt="Engagement Moment 5"></div>
+                    <div class="slide"><img src="images/image6.jpg" alt="Engagement Moment 6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Venue Section -->
+        <section class="section-card">
+            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; margin-bottom: 10px;">The Engagement Venue</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9; line-height: 1.6;">
+                The Grand Imperial Palace,<br> 
+                Palace Road, Bengaluru
+            </p>
+            
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                <i class="fas fa-map-marker-alt"></i> Open in Google Maps
+            </a>
+        </section>
+
+        <!-- 8. Share Section -->
+        <section class="section-card" style="margin-bottom: 0;">
+            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.3rem;">Share The Joy</h2>
+            <p style="font-size: 0.9rem; opacity: 0.85;">Help us spread the news to family and close friends.</p>
+            
+            <div class="share-btn-container">
+                <button class="btn-outline" id="shareWhatsapp">
+                    <i class="fab fa-whatsapp"></i> Share via WhatsApp
+                </button>
+                <button class="btn-outline" id="copyLink">
+                    <i class="fas fa-link"></i> Copy Invitation Link
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
