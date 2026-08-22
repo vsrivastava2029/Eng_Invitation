@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Engagement Invitation | Vikash & Swati</title>
-    <meta name="description" content="You are cordially invited to the grand engagement celebration of Vikash & Swati!">
+    <title>Engagement Invitation | Vikash & Swatika</title>
+    <meta name="description" content="You are cordially invited to the grand engagement celebration of Vikash & Swatika!">
     
     <!-- Open Graph / WhatsApp / Facebook Link Preview Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vsrivastava2029.github.io/Eng_Invitation/">
-    <meta property="og:title" content="Engagement Invitation | Vikash & Swati">
-    <meta property="og:description" content="You are cordially invited to the grand engagement celebration of Vikash & Swati on October 15, 2026!">
+    <meta property="og:title" content="Engagement Invitation | Vikash & Swatika">
+    <meta property="og:description" content="You are cordially invited to the grand engagement celebration of Vikash & Swatika on October 16, 2026!">
     <meta property="og:image" content="https://vsrivastava2029.github.io/Eng_Invitation/images/preview.jpg">
     <meta property="og:image:secure_url" content="https://vsrivastava2029.github.io/Eng_Invitation/images/preview.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -19,8 +19,8 @@
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Engagement Invitation | Vikash & Swati">
-    <meta name="twitter:description" content="You are cordially invited to the grand engagement celebration of Vikash & Swati on October 15, 2026!">
+    <meta name="twitter:title" content="Engagement Invitation | Vikash & Swatika">
+    <meta name="twitter:description" content="You are cordially invited to the grand engagement celebration of Vikash & Swatika on October 16, 2026!">
     <meta name="twitter:image" content="https://vsrivastava2029.github.io/Eng_Invitation/images/preview.jpg">
     
     <!-- Google Fonts -->
@@ -36,21 +36,50 @@
 </head>
 <body>
 
-    <!-- Background Particle Canvas -->
+    <!-- Background Particle Canvas (Flowers & Hearts Rain) -->
     <canvas id="particleCanvas"></canvas>
 
     <!-- Ambient Audio System -->
     <audio id="ambientMusic" loop src="audio/music1.mp3"></audio>
-    <button class="music-btn" id="musicToggle" aria-label="Toggle Music">
-        <i class="fas fa-music"></i>
-    </button>
+
+    <!-- Top Floating Controls (Music Equalizer & Dharmik Theme Switcher) -->
+    <div class="top-controls">
+        <!-- Audio Control Button -->
+        <button class="control-btn music-btn" id="musicToggle" aria-label="Toggle Music" title="Toggle Music">
+            <i class="fas fa-music"></i>
+            <div class="equalizer">
+                <span class="equalizer-bar"></span>
+                <span class="equalizer-bar"></span>
+                <span class="equalizer-bar"></span>
+                <span class="equalizer-bar"></span>
+            </div>
+        </button>
+
+        <!-- Kashi Dharmik Theme Switcher -->
+        <div class="theme-selector">
+            <button class="control-btn" id="themeToggleBtn" aria-label="Select Theme" title="Choose Dharmik Color Palette">
+                <i class="fas fa-palette"></i>
+            </button>
+            <div class="theme-menu" id="themeMenu">
+                <button class="theme-option" data-theme="chandan">
+                    <span class="dot-chandan"></span> Chandan Sandalwood (Default)
+                </button>
+                <button class="theme-option" data-theme="kumkum">
+                    <span class="dot-kumkum"></span> Banarasi Kumkum Red
+                </button>
+                <button class="theme-option" data-theme="saffron">
+                    <span class="dot-saffron"></span> Bhagwa Kesari Saffron
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- 1. Welcome Hero Screen -->
     <section class="hero-layer" id="heroLayer">
         <div class="royal-frame">
             <h1>The Engagement Invitation</h1>
             <div class="floral-divider">❖  ⚜  ❖</div>
-            <div class="couple-names">Vikash <span style="font-size: 0.6em; color: var(--gold);">❤️</span> Swati</div>
+            <div class="couple-names">Vikash <span style="font-size: 0.6em; color: var(--gold);">❤️</span> Swatika</div>
             <p class="invitation-text">
                 Together with our families, we warmly invite you to celebrate our beautiful journey of love and togetherness.
             </p>
@@ -65,7 +94,7 @@
             <div class="envelope-card">
                 <h3>Royal Invitation</h3>
                 <div class="floral-divider" style="margin: 5px 0;">❖</div>
-                <p>Vikash & Swati</p>
+                <p>Vikash & Swatika</p>
                 <small style="font-size: 0.75rem; margin-top:5px; color: #888;">Tap card to open</small>
             </div>
             <div class="envelope-pocket"></div>
@@ -83,9 +112,9 @@
             <div class="scratch-container">
                 <div class="scratch-reveal-card">
                     <h3>Save The Date</h3>
-                    <div style="color:var(--maroon); font-size: 1.2rem;">❖</div>
-                    <p class="date">OCTOBER 15</p>
-                    <p style="font-weight: 600; font-size: 1rem; letter-spacing: 1px;">Thursday | 4:00 PM onwards</p>
+                    <div style="color:var(--bg-primary); font-size: 1.2rem;">❖</div>
+                    <p class="date">OCTOBER 16</p>
+                    <p style="font-weight: 600; font-size: 1rem; letter-spacing: 1px; color: #4A1900;">Friday | 4:00 PM onwards</p>
                     <p style="font-size: 0.85rem; margin-top: 10px; color: #555;">The Grand Imperial Palace</p>
                 </div>
                 <canvas id="scratchCanvas"></canvas>
@@ -97,16 +126,16 @@
             <div class="floral-divider">⚜  ❖  ⚜</div>
             <h2>Inviting You To Celebrate</h2>
             
-            <div class="names">Vikash & Swati</div>
+            <div class="names">Vikash & Swatika</div>
             
             <p class="details-text">
-                With the divine blessings of our elders and almighty, we request the honor of your presence and blessings at the auspicious grand celebration of our engagement ceremony.
+                With the divine blessings of Lord Shiva, our elders, and almighty, we request the honor of your presence and blessings at the auspicious grand celebration of our engagement ceremony.
             </p>
             
             <div class="floral-divider">❖</div>
             
             <p class="details-text" style="font-size: 1.2rem;">
-                On <em>Thursday, 15th October</em><br>
+                On <em>Friday, 16th October</em><br>
                 Time: <em>4:00 PM Onwards</em>
             </p>
             
@@ -154,7 +183,7 @@
                 <button class="slider-arrow arrow-left" id="prevSlide" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
                 <button class="slider-arrow arrow-right" id="nextSlide" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
                 
-                <button id="sliderPausePlayBtn" aria-label="Pause Slideshow" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(44, 4, 10, 0.75); border: 1px solid var(--gold); color: var(--gold); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.3s ease;">
+                <button id="sliderPausePlayBtn" aria-label="Pause Slideshow" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(45, 15, 0, 0.85); border: 1px solid var(--gold); color: var(--gold); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.3s ease;">
                     <i class="fas fa-pause" id="pausePlayIcon"></i>
                 </button>
 

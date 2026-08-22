@@ -1,20 +1,48 @@
 /* ==========================================
-   COLOR PALETTE & DESIGN TOKENS
+   COLOR PALETTES & HINDU DHARMIK KASHI THEME TOKENS
    ========================================== */
 :root {
-    --maroon: #58111A;
-    --maroon-dark: #2C040A;
-    --gold: #D4AF37;
-    --gold-light: #F3E5AB;
-    --white: #FAFAFA;
-    --dark: #222222;
+    /* Default Theme: Chandan Sandalwood & Marigold Gold */
+    --bg-primary: #4A1900;           /* Deep Sandalwood Amber */
+    --bg-dark: #2D0F00;              /* Rich Terracotta Dark */
+    --gold: #FFB300;                 /* Marigold Gold */
+    --gold-light: #FFF8E7;           /* Chandan Sandalwood Cream */
+    --saffron: #E65100;              /* Kesari Saffron */
+    --gold-glow: rgba(255, 179, 0, 0.45);
+    --white: #FFF8E7;                /* Chandan Cream */
+    --card-bg: rgba(255, 248, 231, 0.07);
+    --card-border: rgba(255, 179, 0, 0.42);
     --font-royal: 'Cinzel Decorative', serif;
     --font-cursive: 'Great Vibes', cursive;
     --font-sans: 'Montserrat', sans-serif;
 }
 
+/* Theme Option: Banarasi Kumkum Red & Vedic Gold */
+body.theme-kumkum {
+    --bg-primary: #5B0E17;
+    --bg-dark: #3A060C;
+    --gold: #E5B80B;
+    --gold-light: #FBF5B7;
+    --saffron: #E65100;
+    --gold-glow: rgba(229, 184, 11, 0.45);
+    --card-bg: rgba(255, 248, 231, 0.06);
+    --card-border: rgba(229, 184, 11, 0.4);
+}
+
+/* Theme Option: Bhagwa Kesari Saffron & Imperial Gold */
+body.theme-saffron {
+    --bg-primary: #8C2D00;
+    --bg-dark: #4A1500;
+    --gold: #FFC107;
+    --gold-light: #FFE082;
+    --saffron: #FF5722;
+    --gold-glow: rgba(255, 193, 7, 0.45);
+    --card-bg: rgba(255, 224, 130, 0.07);
+    --card-border: rgba(255, 193, 7, 0.45);
+}
+
 /* ==========================================
-   RESET & GLOBAL RESPONSIVE SETUP
+   RESET & GLOBAL SETUP
    ========================================== */
 * {
     margin: 0;
@@ -25,9 +53,10 @@
 body, html {
     overflow-x: hidden;
     font-family: var(--font-sans);
-    background-color: var(--maroon);
+    background-color: var(--bg-primary);
     color: var(--white);
     scroll-behavior: smooth;
+    transition: background-color 0.6s ease, color 0.6s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -42,40 +71,120 @@ body, html {
     pointer-events: none;
 }
 
-/* Ambient Music Control Button */
-.music-btn {
+/* ==========================================
+   TOP FLOATING CONTROLS (MUSIC, THEMES)
+   ========================================== */
+.top-controls {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 18px;
+    right: 18px;
     z-index: 2000;
-    background: rgba(212, 175, 55, 0.25);
-    border: 2px solid var(--gold);
-    color: var(--gold);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
+    display: flex;
+    gap: 10px;
     align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-.music-btn:hover {
+.control-btn {
+    background: rgba(255, 179, 0, 0.25);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.control-btn:hover {
     background: var(--gold);
-    color: var(--maroon);
+    color: var(--bg-primary);
     transform: scale(1.1);
 }
 
-.music-btn.playing i {
-    animation: pulse 1.5s infinite linear;
+/* Audio Equalizer Icon */
+.equalizer {
+    display: none;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+}
+.music-btn.playing .equalizer {
+    display: flex;
+}
+.music-btn.playing i.fa-music {
+    display: none;
+}
+.equalizer-bar {
+    width: 3px;
+    background-color: var(--gold);
+    border-radius: 2px;
+    animation: bounce 1.2s infinite ease-in-out alternate;
+}
+.music-btn:hover .equalizer-bar {
+    background-color: var(--bg-primary);
+}
+.equalizer-bar:nth-child(1) { height: 60%; animation-delay: -0.4s; }
+.equalizer-bar:nth-child(2) { height: 100%; animation-delay: -0.2s; }
+.equalizer-bar:nth-child(3) { height: 40%; animation-delay: -0.6s; }
+.equalizer-bar:nth-child(4) { height: 80%; animation-delay: -0.1s; }
+
+@keyframes bounce {
+    0% { height: 30%; }
+    100% { height: 100%; }
 }
 
+/* Theme Switcher Popup Menu */
+.theme-selector {
+    position: relative;
+}
+.theme-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background: rgba(45, 15, 0, 0.95);
+    border: 1px solid var(--gold);
+    border-radius: 12px;
+    padding: 12px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    width: 200px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+}
+.theme-menu.active {
+    display: flex;
+}
+.theme-option {
+    background: transparent;
+    border: 1px solid rgba(255, 179, 0, 0.3);
+    color: var(--white);
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+.theme-option:hover {
+    background: var(--gold);
+    color: var(--bg-primary);
+}
+.dot-chandan { width: 12px; height: 12px; border-radius: 50%; background: #4A1900; border: 1px solid #FFB300; }
+.dot-kumkum { width: 12px; height: 12px; border-radius: 50%; background: #5B0E17; border: 1px solid #E5B80B; }
+.dot-saffron { width: 12px; height: 12px; border-radius: 50%; background: #8C2D00; border: 1px solid #FFC107; }
+
 /* ==========================================
-   1. WELCOME HERO SCREEN (FLUID & MODERN)
+   1. WELCOME HERO SCREEN
    ========================================== */
 .hero-layer {
     position: fixed;
@@ -83,7 +192,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(44, 4, 10, 0.85), rgba(88, 17, 26, 0.92)), 
+    background: linear-gradient(rgba(45, 15, 0, 0.88), rgba(74, 25, 0, 0.94)), 
                 url('../images/hero-bg.jpg') center/cover no-repeat;
     z-index: 1000;
     display: flex;
@@ -104,11 +213,11 @@ body, html {
     padding: clamp(25px, 5vw, 45px) clamp(15px, 4vw, 30px);
     max-width: 650px;
     width: 92%;
-    border-radius: 8px;
+    border-radius: 10px;
     position: relative;
-    background: rgba(88, 17, 26, 0.6);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    background: rgba(74, 25, 0, 0.7);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.65), 0 0 35px var(--gold-glow);
 }
 
 .royal-frame::before, .royal-frame::after {
@@ -130,10 +239,10 @@ body, html {
 
 .couple-names {
     font-family: var(--font-cursive);
-    font-size: clamp(2.6rem, 8vw, 4.2rem);
+    font-size: clamp(2.8rem, 8.5vw, 4.4rem);
     color: var(--gold-light);
     margin: 15px 0;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
 
 .invitation-text {
@@ -145,20 +254,20 @@ body, html {
 }
 
 .btn-gold {
-    background: linear-gradient(45deg, #B38728, #FBF5B7, #DAA520, #AA771C);
+    background: linear-gradient(45deg, #E65100, #FFF8E7, #FFB300, #B83A00);
     background-size: 300% 300%;
-    color: var(--maroon);
+    color: #2D0F00;
     border: none;
     padding: clamp(12px, 3vw, 16px) clamp(24px, 6vw, 40px);
     font-size: clamp(0.85rem, 2vw, 1.05rem);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(214, 175, 55, 0.4);
+    box-shadow: 0 5px 20px rgba(255, 179, 0, 0.45);
     animation: goldenShine 4s infinite, pulse 2s infinite;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s;
 }
 
 .btn-gold:hover {
@@ -174,7 +283,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--maroon-dark);
+    background: var(--bg-dark);
     z-index: 999;
     display: flex;
     align-items: center;
@@ -187,9 +296,9 @@ body, html {
     position: relative;
     width: min(320px, 90vw);
     height: min(220px, 60vw);
-    background-color: #6e1620;
+    background-color: #5C1E00;
     border-radius: 0 0 8px 8px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     cursor: pointer;
 }
 
@@ -201,7 +310,7 @@ body, html {
     height: 0;
     border-left: calc(min(320px, 90vw) / 2) solid transparent;
     border-right: calc(min(320px, 90vw) / 2) solid transparent;
-    border-top: calc(min(220px, 60vw) * 0.6) solid #831b26;
+    border-top: calc(min(220px, 60vw) * 0.6) solid #732600;
     transform-origin: top;
     transition: transform 0.6s ease;
     z-index: 3;
@@ -220,7 +329,7 @@ body, html {
     height: 100%;
     border-left: calc(min(320px, 90vw) / 2) solid transparent;
     border-right: calc(min(320px, 90vw) / 2) solid transparent;
-    border-bottom: calc(min(220px, 60vw) * 0.5) solid #530d15;
+    border-bottom: calc(min(220px, 60vw) * 0.5) solid #3A1300;
     z-index: 3;
     border-radius: 0 0 8px 8px;
     pointer-events: none;
@@ -232,7 +341,7 @@ body, html {
     left: 15px;
     width: calc(100% - 30px);
     height: calc(100% - 20px);
-    background: linear-gradient(135deg, #fff, var(--gold-light));
+    background: linear-gradient(135deg, #FFF8E7, var(--gold-light));
     border-radius: 4px;
     z-index: 2;
     transition: transform 0.8s ease;
@@ -240,7 +349,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--maroon);
+    color: var(--bg-primary);
     padding: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
@@ -249,11 +358,13 @@ body, html {
     font-family: var(--font-royal);
     font-size: 1rem;
     margin-bottom: 5px;
+    color: #732600;
 }
 
 .envelope-card p {
     font-family: var(--font-cursive);
     font-size: 1.8rem;
+    color: #4A1900;
 }
 
 .envelope-wrapper.open .envelope-card {
@@ -262,7 +373,7 @@ body, html {
 }
 
 /* ==========================================
-   MAIN CONTENT AREA & SECTION ANIMATIONS
+   MAIN CONTENT AREA & SECTION CARDS
    ========================================== */
 .main-content {
     position: relative;
@@ -273,17 +384,16 @@ body, html {
     padding: clamp(30px, 6vw, 60px) 15px;
 }
 
-/* Shared Section Card Styles */
 .section-card {
-    background: rgba(250, 250, 250, 0.04);
-    border: 1px solid rgba(214, 175, 55, 0.35);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 14px;
     padding: clamp(25px, 5vw, 45px) clamp(15px, 4vw, 30px);
     margin-bottom: clamp(30px, 6vw, 50px);
     text-align: center;
     backdrop-filter: blur(12px);
     position: relative;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.45), 0 0 25px var(--gold-glow);
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -298,9 +408,10 @@ body, html {
     content: '';
     position: absolute;
     top: 8px; left: 8px; right: 8px; bottom: 8px;
-    border: 1px solid rgba(214, 175, 55, 0.18);
+    border: 1px solid var(--card-border);
     border-radius: 10px;
     pointer-events: none;
+    opacity: 0.6;
 }
 
 .floral-divider {
@@ -339,7 +450,7 @@ body, html {
     width: 100%;
     height: 100%;
     background: var(--white);
-    color: var(--maroon);
+    color: var(--bg-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -351,7 +462,7 @@ body, html {
 .scratch-reveal-card h3 {
     font-family: var(--font-royal);
     font-size: 1.2rem;
-    color: #b08218;
+    color: #b83a00;
     margin-bottom: 10px;
 }
 
@@ -359,6 +470,7 @@ body, html {
     font-size: clamp(1.3rem, 4vw, 1.7rem);
     font-weight: 600;
     margin: 5px 0;
+    color: #4A1900;
 }
 
 /* ==========================================
@@ -392,7 +504,7 @@ body, html {
 }
 
 /* ==========================================
-   5. COUNTDOWN TIMER (RESPONSIVE GRID)
+   5. COUNTDOWN TIMER
    ========================================== */
 .countdown-container {
     display: grid;
@@ -403,8 +515,8 @@ body, html {
 }
 
 .countdown-box {
-    background: rgba(88, 17, 26, 0.75);
-    border: 1px solid rgba(214, 175, 55, 0.45);
+    background: rgba(45, 15, 0, 0.85);
+    border: 1px solid var(--card-border);
     padding: clamp(10px, 3vw, 18px) 5px;
     border-radius: 10px;
 }
@@ -426,7 +538,7 @@ body, html {
 }
 
 /* ==========================================
-   6. PHOTO GALLERY (SLIDER & TOUCH)
+   6. PHOTO GALLERY (SLIDER)
    ========================================== */
 .slider-window {
     position: relative;
@@ -468,7 +580,7 @@ body, html {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(44, 4, 10, 0.75);
+    background: rgba(45, 15, 0, 0.85);
     border: 1px solid var(--gold);
     color: var(--gold);
     width: clamp(34px, 8vw, 44px);
@@ -485,7 +597,7 @@ body, html {
 
 .slider-arrow:hover {
     background: var(--gold);
-    color: var(--maroon);
+    color: var(--bg-primary);
 }
 
 .arrow-left { left: 10px; }
@@ -494,14 +606,6 @@ body, html {
 /* ==========================================
    7. BUTTONS & UTILITIES
    ========================================== */
-.share-btn-container {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
 .btn-outline {
     background: transparent;
     border: 2px solid var(--gold);
@@ -513,6 +617,7 @@ body, html {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -520,9 +625,9 @@ body, html {
 
 .btn-outline:hover {
     background: var(--gold);
-    color: var(--maroon);
+    color: var(--bg-primary);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(214, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 179, 0, 0.45);
 }
 
 /* ==========================================
@@ -535,14 +640,11 @@ body, html {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 5px 15px rgba(214, 175, 55, 0.4); }
-    50% { transform: scale(1.04); box-shadow: 0 5px 25px rgba(214, 175, 55, 0.7); }
-    100% { transform: scale(1); box-shadow: 0 5px 15px rgba(214, 175, 55, 0.4); }
+    0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 179, 0, 0.4); }
+    50% { transform: scale(1.04); box-shadow: 0 5px 25px rgba(255, 179, 0, 0.7); }
+    100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 179, 0, 0.4); }
 }
 
-/* ==========================================
-   RESPONSIVE BREAKPOINTS
-   ========================================== */
 @media (max-width: 480px) {
     .countdown-container {
         grid-template-columns: repeat(2, 1fr);
