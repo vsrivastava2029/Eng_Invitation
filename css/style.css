@@ -2,31 +2,31 @@
    COLOR PALETTES & HINDU DHARMIK KASHI THEME TOKENS
    ========================================== */
 :root {
-    /* Default Theme: Chandan Sandalwood & Marigold Gold */
-    --bg-primary: #4A1900;           /* Deep Sandalwood Amber */
-    --bg-dark: #2D0F00;              /* Rich Terracotta Dark */
-    --gold: #FFB300;                 /* Marigold Gold */
-    --gold-light: #FFF8E7;           /* Chandan Sandalwood Cream */
-    --saffron: #E65100;              /* Kesari Saffron */
-    --gold-glow: rgba(255, 179, 0, 0.45);
+    /* Default Theme: Banarasi Kumkum Red & Vedic Gold */
+    --bg-primary: #5B0E17;           /* Deep Banarasi Silk Crimson / Sacred Kumkum Red */
+    --bg-dark: #3A060C;              /* Rich Temple Velvet Red */
+    --gold: #E5B80B;                 /* Pure Kashi Vedic Gold */
+    --gold-light: #FBF5B7;           /* Sandalwood & Champagne Silk */
+    --saffron: #E65100;              /* Sacred Kesari Saffron Accent */
+    --gold-glow: rgba(229, 184, 11, 0.45);
     --white: #FFF8E7;                /* Chandan Cream */
-    --card-bg: rgba(255, 248, 231, 0.07);
-    --card-border: rgba(255, 179, 0, 0.42);
+    --card-bg: rgba(255, 248, 231, 0.06);
+    --card-border: rgba(229, 184, 11, 0.4);
     --font-royal: 'Cinzel Decorative', serif;
     --font-cursive: 'Great Vibes', cursive;
     --font-sans: 'Montserrat', sans-serif;
 }
 
-/* Theme Option: Banarasi Kumkum Red & Vedic Gold */
-body.theme-kumkum {
-    --bg-primary: #5B0E17;
-    --bg-dark: #3A060C;
-    --gold: #E5B80B;
-    --gold-light: #FBF5B7;
+/* Theme Option: Chandan Sandalwood & Marigold Gold */
+body.theme-chandan {
+    --bg-primary: #4A1900;
+    --bg-dark: #2D0F00;
+    --gold: #FFB300;
+    --gold-light: #FFF8E7;
     --saffron: #E65100;
-    --gold-glow: rgba(229, 184, 11, 0.45);
-    --card-bg: rgba(255, 248, 231, 0.06);
-    --card-border: rgba(229, 184, 11, 0.4);
+    --gold-glow: rgba(255, 179, 0, 0.45);
+    --card-bg: rgba(255, 248, 231, 0.07);
+    --card-border: rgba(255, 179, 0, 0.42);
 }
 
 /* Theme Option: Bhagwa Kesari Saffron & Imperial Gold */

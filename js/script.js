@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 const selectedTheme = btn.getAttribute('data-theme');
                 document.body.className = '';
-                if (selectedTheme !== 'chandan') {
+                if (selectedTheme !== 'kumkum') {
                     document.body.classList.add('theme-' + selectedTheme);
                 }
                 themeMenu.classList.remove('active');
