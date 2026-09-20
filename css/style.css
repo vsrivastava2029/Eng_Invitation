@@ -29,18 +29,6 @@ body.theme-chandan {
     --card-border: rgba(255, 179, 0, 0.42);
 }
 
-/* Theme Option: Bhagwa Kesari Saffron & Imperial Gold */
-body.theme-saffron {
-    --bg-primary: #8C2D00;
-    --bg-dark: #4A1500;
-    --gold: #FFC107;
-    --gold-light: #FFE082;
-    --saffron: #FF5722;
-    --gold-glow: rgba(255, 193, 7, 0.45);
-    --card-bg: rgba(255, 224, 130, 0.07);
-    --card-border: rgba(255, 193, 7, 0.45);
-}
-
 /* ==========================================
    RESET & GLOBAL SETUP
    ========================================== */
@@ -181,7 +169,6 @@ body, html {
 }
 .dot-chandan { width: 12px; height: 12px; border-radius: 50%; background: #4A1900; border: 1px solid #FFB300; }
 .dot-kumkum { width: 12px; height: 12px; border-radius: 50%; background: #5B0E17; border: 1px solid #E5B80B; }
-.dot-saffron { width: 12px; height: 12px; border-radius: 50%; background: #8C2D00; border: 1px solid #FFC107; }
 
 /* ==========================================
    1. WELCOME HERO SCREEN
