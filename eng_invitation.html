@@ -108,7 +108,7 @@
         <!-- 3. Scratch Card Section -->
         <section class="section-card">
             <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.3rem;">A Special Secret</h2>
-            <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.9;">✨ Scratch to reveal our date ✨</p>
+            <p style="font-size: 0.9rem; margin-top: 5px; opacity: 0.9;">✨ Scratch to reveal our date & unlock full invitation ✨</p>
             
             <div class="scratch-container">
                 <div class="scratch-reveal-card">
@@ -120,100 +120,109 @@
                 </div>
                 <canvas id="scratchCanvas"></canvas>
             </div>
-        </section>
 
-        <!-- 4. Invitation Core Details -->
-        <section class="section-card invitation-main-card">
-            <div class="floral-divider">⚜  ❖  ⚜</div>
-            <div class="floral-divider">ॐ श्री गणेशाय नम:</div>
-            <h2>With the Divine Blessings of Lord Ganesha</h2>
-            <h2>Inviting You To Celebrate</h2>
-            
-            <div class="names" style="margin: 15px 0 25px;">
-                <span style="font-size: 0.45em; display: block; font-family: var(--font-royal); letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px;">The Auspicious Ring Ceremony of</span>
-                Swatika & Vikash
-            </div>
-            
-            <p class="details-text">
-                With the divine blessings of Lord Ganesha, Lord Shiva, our beloved elders, and the Almighty, we joyfully invite you to grace the auspicious occasion of our engagement ceremony and bless us as we begin this beautiful journey together.
-            </p>
-            
-            <div class="floral-divider">❖ ॐ ❖</div>
-            
-            <p class="details-text" style="font-size: 1.2rem;">
-                On <em>Friday, 16th October</em><br>
-                Time: <em>5:00 PM Onwards</em>
-            </p>
-            
-            <div class="floral-divider">❖</div>
-            
-            <p class="details-text" style="font-size: 1rem;">
-                <strong>Hosted By:</strong><br>
-                Agrawal & Family Members
-            </p>
-
-            <div style="margin-top: 25px;">
-                <button class="btn-outline" id="addToCalendar">
-                    <i class="far fa-calendar-plus"></i> Add to Google Calendar
-                </button>
+            <div id="scratchHint" style="margin-top: 15px; font-size: 0.85rem; color: var(--gold); letter-spacing: 1px; font-weight: 600; animation: pulse 1.8s infinite;">
+                ✨ Scratch the card above to unlock full invitation details ✨
             </div>
         </section>
 
-        <!-- 5. Countdown Clock Section -->
-        <section class="section-card">
-            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; letter-spacing: 1px;">Counting Down To Forever</h2>
-            <div class="countdown-container">
-                <div class="countdown-box">
-                    <span id="days">00</span>
-                    <label>Days</label>
-                </div>
-                <div class="countdown-box">
-                    <span id="hours">00</span>
-                    <label>Hours</label>
-                </div>
-                <div class="countdown-box">
-                    <span id="minutes">00</span>
-                    <label>Mins</label>
-                </div>
-                <div class="countdown-box">
-                    <span id="seconds">00</span>
-                    <label>Secs</label>
-                </div>
-            </div>
-        </section>
+        <!-- Hidden locked content container - Unlocks only after Scratch Card is cleared -->
+        <div id="lockedContent" style="display: none; opacity: 0; transition: opacity 1s ease;">
 
-        <!-- 6. Photo Gallery Carousel Section -->
-        <section class="section-card">
-            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; margin-bottom: 20px;">Moments of Love</h2>
-            <div class="slider-window" id="gallerySlider">
-                <button class="slider-arrow arrow-left" id="prevSlide" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-arrow arrow-right" id="nextSlide" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+            <!-- 4. Invitation Core Details -->
+            <section class="section-card invitation-main-card">
+                <div class="floral-divider">⚜  ❖  ⚜</div>
+                <div class="floral-divider">ॐ श्री गणेशाय नम:</div>
+                <h2>With the Divine Blessings of Lord Ganesha</h2>
+                <h2>Inviting You To Celebrate</h2>
                 
-                <button id="sliderPausePlayBtn" aria-label="Pause Slideshow" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(45, 15, 0, 0.85); border: 1px solid var(--gold); color: var(--gold); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.3s ease;">
-                    <i class="fas fa-pause" id="pausePlayIcon"></i>
-                </button>
-
-                <div class="slider-track" id="sliderTrack">
-                    <div class="slide"><img src="images/image1.jpeg" alt="Engagement Moment 1"></div>
-                    <div class="slide"><img src="images/image2.jpeg" alt="Engagement Moment 2"></div>
-                    <div class="slide"><img src="images/image3.jpg" alt="Engagement Moment 3"></div>
-                    <div class="slide"><img src="images/image4.jpeg" alt="Engagement Moment 4"></div>
+                <div class="names" style="margin: 15px 0 25px;">
+                    <span style="font-size: 0.45em; display: block; font-family: var(--font-royal); letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px;">The Auspicious Ring Ceremony of</span>
+                    Swatika & Vikash
                 </div>
-            </div>
-        </section>
+                
+                <p class="details-text">
+                    With the divine blessings of Lord Ganesha, Lord Shiva, our beloved elders, and the Almighty, we joyfully invite you to grace the auspicious occasion of our engagement ceremony and bless us as we begin this beautiful journey together.
+                </p>
+                
+                <div class="floral-divider">❖ ॐ ❖</div>
+                
+                <p class="details-text" style="font-size: 1.2rem;">
+                    On <em>Friday, 16th October</em><br>
+                    Time: <em>5:00 PM Onwards</em>
+                </p>
+                
+                <div class="floral-divider">❖</div>
+                
+                <p class="details-text" style="font-size: 1rem;">
+                    <strong>Hosted By:</strong><br>
+                    Agrawal & Family Members
+                </p>
 
-        <!-- 7. Venue Section -->
-        <section class="section-card" style="margin-bottom: 0;">
-            <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; margin-bottom: 10px;">The Engagement Venue</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9; line-height: 1.6;">
-                The 6Sense Restaurant,<br> 
-                Dandupur, GT Ring Road, Varanasi
-            </p>
-            
-            <a href="https://www.google.com/maps/search/?api=1&query=6Sense+Restaurant+Dandupur+Ring+Road+Varanasi" target="_blank" rel="noopener noreferrer" class="btn-outline">
-                <i class="fas fa-map-marker-alt"></i> Open in Google Maps
-            </a>
-        </section>
+                <div style="margin-top: 25px;">
+                    <button class="btn-outline" id="addToCalendar">
+                        <i class="far fa-calendar-plus"></i> Add to Google Calendar
+                    </button>
+                </div>
+            </section>
+
+            <!-- 5. Countdown Clock Section -->
+            <section class="section-card">
+                <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; letter-spacing: 1px;">Counting Down To Forever</h2>
+                <div class="countdown-container">
+                    <div class="countdown-box">
+                        <span id="days">00</span>
+                        <label>Days</label>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="hours">00</span>
+                        <label>Hours</label>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="minutes">00</span>
+                        <label>Mins</label>
+                    </div>
+                    <div class="countdown-box">
+                        <span id="seconds">00</span>
+                        <label>Secs</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Photo Gallery Carousel Section -->
+            <section class="section-card">
+                <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; margin-bottom: 20px;">Moments of Love</h2>
+                <div class="slider-window" id="gallerySlider">
+                    <button class="slider-arrow arrow-left" id="prevSlide" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-arrow arrow-right" id="nextSlide" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                    
+                    <button id="sliderPausePlayBtn" aria-label="Pause Slideshow" style="position: absolute; bottom: 15px; right: 15px; z-index: 10; background: rgba(45, 15, 0, 0.85); border: 1px solid var(--gold); color: var(--gold); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.3s ease;">
+                        <i class="fas fa-pause" id="pausePlayIcon"></i>
+                    </button>
+
+                    <div class="slider-track" id="sliderTrack">
+                        <div class="slide"><img src="images/image1.jpeg" alt="Engagement Moment 1"></div>
+                        <div class="slide"><img src="images/image2.jpeg" alt="Engagement Moment 2"></div>
+                        <div class="slide"><img src="images/image3.jpg" alt="Engagement Moment 3"></div>
+                        <div class="slide"><img src="images/image4.jpeg" alt="Engagement Moment 4"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Venue Section -->
+            <section class="section-card" style="margin-bottom: 0;">
+                <h2 style="font-family: var(--font-royal); color: var(--gold); font-size: 1.4rem; margin-bottom: 10px;">The Engagement Venue</h2>
+                <p style="font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9; line-height: 1.6;">
+                    The 6Sense Restaurant,<br> 
+                    Dandupur, GT Ring Road, Varanasi
+                </p>
+                
+                <a href="https://www.google.com/maps/search/?api=1&query=6Sense+Restaurant+Dandupur+Ring+Road+Varanasi" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                    <i class="fas fa-map-marker-alt"></i> Open in Google Maps
+                </a>
+            </section>
+
+        </div>
 
     </main>
 

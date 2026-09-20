@@ -308,18 +308,42 @@ document.addEventListener('DOMContentLoaded', () => {
         scratchCanvas.addEventListener('mousemove', scratch);
         scratchCanvas.addEventListener('touchmove', scratch);
 
+        let isUnlocked = false;
+
         function checkScratchPercentage() {
+            if (isUnlocked) return;
             const imgData = sCtx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height);
             let clearedPixels = 0;
             for (let i = 3; i < imgData.data.length; i += 4) {
                 if (imgData.data[i] === 0) clearedPixels++;
             }
             let percent = (clearedPixels / (imgData.width * imgData.height)) * 100;
-            if (percent > 40) {
+            if (percent > 35) {
+                isUnlocked = true;
                 scratchCanvas.style.transition = 'opacity 0.6s ease';
                 scratchCanvas.style.opacity = 0;
-                setTimeout(() => scratchCanvas.remove(), 600);
+                setTimeout(() => {
+                    scratchCanvas.remove();
+                    unlockFullContent();
+                }, 600);
             }
+        }
+    }
+
+    function unlockFullContent() {
+        const lockedContent = document.getElementById('lockedContent');
+        const scratchHint = document.getElementById('scratchHint');
+        if (scratchHint) {
+            scratchHint.innerHTML = "🎉 Date Revealed! Full Details Unlocked Below 👇";
+            scratchHint.style.color = "var(--gold-light)";
+        }
+        if (lockedContent) {
+            lockedContent.style.display = 'block';
+            setTimeout(() => {
+                lockedContent.style.opacity = '1';
+                initScrollAnimations();
+                lockedContent.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
         }
     }
 
