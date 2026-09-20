@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calendarBtn.addEventListener('click', () => {
             const title = encodeURIComponent("Vikash & Swatika Engagement Ceremony");
             const details = encodeURIComponent("Join us in celebrating the engagement of Vikash & Swatika!");
-            const location = encodeURIComponent("The Grand Imperial Palace, Palace Road, Bengaluru");
+            const location = encodeURIComponent("The 6Sense Restaurant, Dandupur, Ring Road, Varanasi");
             const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261016T103000Z/20261016T160000Z&details=${details}&location=${location}`;
             window.open(googleCalUrl, '_blank');
         });
