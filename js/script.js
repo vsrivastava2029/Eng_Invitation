@@ -385,9 +385,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ==========================================
-       G. CAROUSEL PHOTO GALLERY SYSTEM
+       G. ANIMATED CINEMATIC GALLERY SYSTEM
        ========================================== */
     const track = document.getElementById('sliderTrack');
+    const dotsContainer = document.getElementById('sliderDots');
+
     if (track) {
         const slides = Array.from(track.children);
         const nextBtn = document.getElementById('nextSlide');
@@ -398,9 +400,40 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentSlideIndex = 0;
         let autoSlideTimer; 
         let isSliderPlaying = true;
+        let dotsArray = [];
+
+        // Build dynamic pagination dots
+        if (dotsContainer) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = 'slider-dot' + (idx === 0 ? ' active' : '');
+                dot.addEventListener('click', () => {
+                    moveSliderToIndex(idx);
+                    resetAutoSlide();
+                });
+                dotsContainer.appendChild(dot);
+                dotsArray.push(dot);
+            });
+        }
+
+        // Set initial slide active
+        slides.forEach((s, i) => {
+            if (i === 0) s.classList.add('active');
+            else s.classList.remove('active');
+        });
 
         function moveSliderToIndex(idx) {
-            track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+            slides.forEach((slide, i) => {
+                if (i === idx) slide.classList.add('active');
+                else slide.classList.remove('active');
+            });
+            if (dotsArray.length > 0) {
+                dotsArray.forEach((dot, i) => {
+                    if (i === idx) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+            }
             currentSlideIndex = idx;
         }
 

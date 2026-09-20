@@ -546,35 +546,44 @@ body, html {
 }
 
 /* ==========================================
-   6. PHOTO GALLERY (SLIDER)
+   6. PHOTO GALLERY (ANIMATED CINEMATIC ALBUM)
    ========================================== */
 .slider-window {
     position: relative;
     width: 100%;
     max-width: 650px;
-    height: clamp(250px, 50vw, 420px);
+    height: clamp(280px, 55vw, 440px);
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 3px solid var(--gold);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.65), 0 0 25px var(--gold-glow);
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .slider-track {
-    display: flex;
+    position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .slide {
-    min-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .slide img {
@@ -582,11 +591,47 @@ body, html {
     height: 100%;
     object-fit: contain;
     object-position: center top;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s ease;
 }
 
-.slide:hover img {
-    transform: scale(1.06);
+.slide.active img {
+    animation: kenBurnsZoom 7s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurnsZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 248, 231, 0.4);
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+    background: var(--gold);
+    width: 24px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--gold);
 }
 
 .slider-arrow {
