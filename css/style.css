@@ -195,9 +195,9 @@ body, html {
     background-color: var(--bg-dark);
     background-image: linear-gradient(rgba(45, 15, 0, 0.25), rgba(74, 25, 0, 0.5)), 
                       url('../images/hero-bg.jpg');
-    background-position: center top;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: contain;
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -206,6 +206,13 @@ body, html {
     text-align: center;
     padding: clamp(15px, 4vw, 30px);
     transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .hero-layer {
+        background-size: cover;
+        background-position: center top;
+    }
 }
 
 .hero-layer.slide-up {
