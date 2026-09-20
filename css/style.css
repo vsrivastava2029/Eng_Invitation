@@ -192,7 +192,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(45, 15, 0, 0.88), rgba(74, 25, 0, 0.94)), 
+    background: linear-gradient(rgba(45, 15, 0, 0.35), rgba(74, 25, 0, 0.6)), 
                 url('../images/hero-bg.jpg') center top/cover no-repeat;
     z-index: 1000;
     display: flex;
@@ -215,9 +215,19 @@ body, html {
     width: 92%;
     border-radius: 10px;
     position: relative;
-    background: rgba(74, 25, 0, 0.7);
-    backdrop-filter: blur(12px);
+    background: rgba(74, 25, 0, 0.45);
+    backdrop-filter: blur(6px);
     box-shadow: 0 20px 50px rgba(0,0,0,0.65), 0 0 35px var(--gold-glow);
+}
+
+.ganesha-blessing {
+    color: var(--gold-light);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px var(--gold), 0 2px 6px rgba(0,0,0,0.8);
 }
 
 .royal-frame::before, .royal-frame::after {
