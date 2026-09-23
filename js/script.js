@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const lockedContent = document.getElementById('lockedContent');
         const scratchHint = document.getElementById('scratchHint');
         if (scratchHint) {
-            scratchHint.innerHTML = "🎉 Date Revealed! Full Details Unlocked Below 👇";
+            scratchHint.innerHTML = "🎉 Date Revealed! Scroll down for full invitation details 👇";
             scratchHint.style.color = "var(--gold-light)";
         }
         if (lockedContent) {
@@ -342,7 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 lockedContent.style.opacity = '1';
                 initScrollAnimations();
-                lockedContent.scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
     }
